@@ -1,0 +1,21 @@
+﻿{% extends "app/layout.html" %}
+{% block content %}
+
+<h2>{{ title }}.</h2>
+<h3>{{ message }}</h3>
+
+{% if latest_topic_list %}
+    <ul>
+    {% for topic in latest_topic_list %}
+        <li><a href="{% url 'polls' topic.id %}">{{ topic.text }}</a></li>
+    {% endfor %}
+    </ul>
+  
+{% else %}
+    <p>No polls are available.</p>
+{% endif %}
+{% if request.user.is_authenticated %}
+<a href="{% url 'add_topic' %}"><h2>Insertar tema</h2></a> 
+{% endif %}
+
+{% endblock %}
